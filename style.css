@@ -1,0 +1,145 @@
+/* navbar styling */
+ul li {
+  display: inline;
+  margin: 0px 10px 0px 10px;
+}
+ul a {
+  text-decoration: none;
+  color: rgb(66, 66, 66);
+}
+ul a:hover {
+  color: rgb(66, 66, 66);
+}
+#view-apps-button {
+  background-color: transparent;
+  border: none;
+}
+#signin-profile {
+  background-color: #4486f7;
+  border: none;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  border-radius: 2px;
+  font-weight: 700;
+}
+/* main styling */
+.main {
+  text-align: center;
+  margin: 150px auto;
+  width: 70%;
+}
+
+.main img {
+  margin-bottom: 20px;
+}
+.main input {
+  text-align: left;
+  padding: 15px 20px;
+  width: 100%;
+  border-radius: 50px;
+  margin-bottom: 30px;
+  border: 1px solid rgb(182, 182, 182);
+}
+.main input:focus {
+  outline: none;
+}
+
+.main button {
+  border: none;
+  color: rgb(66, 66, 66);
+  padding: 10px 20px 10px 20px;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  margin: 10px;
+}
+.main button:hover {
+  border: 1px solid rgb(151, 151, 151);
+}
+
+/* dialog styling */
+
+#viewMoreBt {
+  border: none;
+  color: rgb(66, 66, 66);
+  padding: 10px 20px 10px 20px;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+#viewMoreBt:hover {
+  border: 1px solid rgb(151, 151, 151);
+}
+
+.col-4 a {
+  color: black;
+}
+
+.visibleExtraContent {
+  display: none;
+}
+.row img {
+  margin: 10px;
+}
+
+/* login modal styling */
+.login-modal {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.login-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  border: 1px solid #888;
+  width: 80%;
+  padding: 40px;
+}
+.login-content .close-login {
+  text-align: right;
+}
+.login-content input {
+  display: block;
+  width: 100%;
+}
+
+.login-content button {
+  border: none;
+  color: rgb(66, 66, 66);
+  padding: 10px 20px 10px 20px;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.login-content button:hover {
+  border: 1px solid rgb(151, 151, 151);
+}
+.close-login {
+  font-size: 30px;
+}
+
+/* media breakpoints for responsivness */
+@media (min-width: 800px) {
+  .main input {
+    text-align: center;
+    padding: 15px 0px;
+    width: 520px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    border: 1px solid rgb(182, 182, 182);
+  }
+}
+@media (max-width: 400px) {
+  .main {
+    margin: 100px auto;
+  }
+  .main img {
+    width: 230px;
+  }
+}

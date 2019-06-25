@@ -79,21 +79,65 @@ loginUserButton.addEventListener("click", e => {
   }
 
   if (password != "" && email != "") {
+    //create JSON object
+
+    const userLogin = {
+      email: email,
+      password: password
+    };
+
+    const dataStr =
+      "email=" + userLogin.email + "&password=" + userLogin.password;
+
+    //create ajax request
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "login.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onload = function() {
+      if (this.status == 200) {
+        //if user has account Dialog will hide and json object will be displayed instead of sing in buton
+        if (this.responseText == "404") {
+          alert("No account exists with email " + userLogin.email);
+        } else {
+          //record found
+          const foundAccount = JSON.parse(this.response);
+          console.log(foundAccount);
+          //checking credentials
+          if (userLogin.password != foundAccount.password) {
+            alert("incorrect password!");
+          } else {
+            let uiAccount = `<p>id: ${foundAccount.uid}</p>`;
+            uiAccount += `<p>Email: ${foundAccount.email}</p>`;
+            uiAccount += `<p>Name: ${foundAccount.firstName} ${
+              foundAccount.lastName
+            }</p>`;
+            uiAccount += `<p>Age: ${foundAccount.age}
+            </p>`;
+            uiAccount += `<p>Address: ${foundAccount.address}
+          </p>`;
+            signinBt.classList.toggle("signedIn");
+            signinBt.innerHTML = uiAccount;
+            console.log(userLogin.password);
+          }
+        }
+      }
+    };
+    xhr.send(dataStr);
+
     //hide modal
     loginModal.style.display = "none";
     //clear fields
     document.querySelector("#email").value = "";
     document.querySelector("#password").value = "";
     //save to web storage
-    localStorage.setItem("email", email);
 
-    //bad approach(does not use regex)
-    let emailArray = email.split("@");
-    const displayName =
-      emailArray[0].charAt(0).toUpperCase() +
-      emailArray[1].charAt(0).toUpperCase();
-    signinBt.innerHTML = displayName;
-
-    signinBt.style.borderRadius = "50%";
+    // //bad approach(does not use regex)
+    // let emailArray = email.split("@");
+    // const displayName =
+    //   emailArray[0].charAt(0).toUpperCase() +
+    //   emailArray[1].charAt(0).toUpperCase();
+    // signinBt.innerHTML = displayName;
+    // signinBt.style.borderRadius = "50%";
   }
 });

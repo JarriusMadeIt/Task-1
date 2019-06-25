@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +15,7 @@
 </head>
 
 <body>
+
   <!-- navbar block -->
   <ul class="navbar justify-content-end align-items-center">
     <li><a href="">Gmail</a></li>

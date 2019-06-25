@@ -123,6 +123,9 @@ ul a:hover {
 .close-login {
   font-size: 30px;
 }
+.signedIn p {
+  margin: 0;
+}
 
 /* media breakpoints for responsivness */
 @media (min-width: 800px) {

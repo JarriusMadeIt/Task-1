@@ -4,10 +4,19 @@ const signinBt = document.querySelector("#signin-profile");
 const viewMoreBt = document.querySelector("#viewMoreBt");
 const searchBt = document.querySelector("#searchBt");
 
+let isOpen = false;
 //view more apps event
 viewMoreBt.addEventListener("click", () => {
-  const row = document.getElementById("extraLogos");
-  row.classList.toggle("visibleExtraContent");
+  const extraLogos = document.getElementById("extraLogos");
+  if (isOpen == false) {
+    extraLogos.classList.add("d-flex");
+    isOpen = true;
+    viewMoreBt.innerHTML = "View Less";
+  } else {
+    extraLogos.classList.remove("d-flex");
+    isOpen = false;
+    viewMoreBt.innerHTML = "View More";
+  }
 });
 
 //event on search button clicked
@@ -160,4 +169,60 @@ closeSignUpButton.addEventListener("click", () => {
 SignUpUser.addEventListener("click", e => {
   e.preventDefault();
   //extracting data
+
+  let SignUpEmail = document.getElementById("SignUpEmail").value;
+  let SignUpPassword = document.getElementById("SignUpPassword").value;
+  let SignUpFirstName = document.getElementById("SignUpFirstName").value;
+  let SignUpLastName = document.getElementById("SignUpLastName").value;
+  let SignUpAge = document.getElementById("SignUpAge").value;
+  let SignUpAddress = document.getElementById("SignUpAddress").value;
+
+  if (SignUpEmail == "") {
+    document.getElementById("SignUpEmail").style.border = "3px solid red";
+  }
+  if (SignUpPassword == "") {
+    document.getElementById("SignUpPassword").style.border = "3px solid red";
+  }
+  if (SignUpFirstName == "") {
+    document.getElementById("SignUpFirstName").style.border = "3px solid red";
+  }
+  if (SignUpLastName == "") {
+    document.getElementById("SignUpLastName").style.border = "3px solid red";
+  }
+  if (SignUpAge == "") {
+    document.getElementById("SignUpAge").style.border = "3px solid red";
+  }
+  if (SignUpAddress == "") {
+    document.getElementById("SignUpAddress").style.border = "3px solid red";
+  }
+  if (
+    SignUpEmail != "" &&
+    SignUpPassword != "" &&
+    SignUpFirstName != "" &&
+    SignUpLastName != "" &&
+    SignUpAge != "" &&
+    SignUpAddress != ""
+  ) {
+    //all fields have been filled and ready to be sent to server using ajax(post)
+
+    //creating datastring
+    let data = `SignUpEmail=${SignUpEmail}&SignUpPassword=${SignUpPassword}&SignUpFirstName=${SignUpFirstName}&SignUpLastName=${SignUpLastName}&SignUpAge=${SignUpAge}&SignUpAddress=${SignUpAddress}`;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "SignUp.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onload = function() {
+      if (this.status == 200) {
+        if (this.responseText == "success") {
+          SignUpDialog.style.display = "none";
+          alert("User added to database");
+        } else {
+          alert(
+            "An account already exists with this Email, try with another email"
+          );
+        }
+      }
+    };
+    xhr.send(data);
+  }
 });

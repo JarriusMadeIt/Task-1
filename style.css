@@ -15,6 +15,10 @@ ul a:hover {
   border: none;
   cursor: pointer;
 }
+
+#extraLogos {
+  display: none;
+}
 #signin-profile {
   background-color: #4486f7;
   border: none;
@@ -94,15 +98,12 @@ ul a:hover {
   color: black;
 }
 
-.visibleExtraContent {
-  display: none;
-}
 .row img {
   margin: 10px;
 }
 /* Sign up dialog box styling */
 .signUpDialog {
-  /* display: none; */
+  display: none;
   height: 100%;
   width: 100%;
   position: fixed;
@@ -142,7 +143,7 @@ ul a:hover {
 .signUpContent form {
   text-align: left;
   margin: 0 auto;
-  width: 70%;
+  width: 215px;
   padding-bottom: 20px;
 }
 .signUpContent form input {
@@ -169,7 +170,7 @@ ul a:hover {
   color: white;
   transition: 500ms;
   outline: none;
-
+  text-align: center;
   font-weight: 600;
   cursor: pointer;
 
@@ -193,30 +194,62 @@ ul a:hover {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .login-content {
-  background-color: #fefefe;
-  margin: 15% auto;
+  background-color: black;
+  width: 70%;
+  color: white;
   border: 1px solid #888;
-  width: 80%;
-  padding: 40px;
+  margin: 5% auto;
+  text-align: center;
+  border-radius: 50px;
+  padding: 10px 20px 20px 20px;
+}
+.login-content img {
+  width: 20%;
+}
+.login-content div {
+  text-align: center;
+  padding: 20px;
 }
 .login-content .close-login {
   text-align: right;
+  cursor: pointer;
+}
+.login-content form {
+  text-align: left;
+  width: 70%;
+  margin: 0 auto;
 }
 .login-content input {
-  display: block;
   width: 100%;
+  text-align: center;
+  margin-bottom: 3px;
 }
 
 .login-content button {
+  background-image: linear-gradient(
+    137.9deg,
+    rgba(78, 156, 226, 1) 7.8%,
+    rgba(62, 146, 69, 1) 16%,
+    rgba(251, 220, 23, 1) 32.7%,
+    rgba(242, 160, 35, 1) 50.4%,
+    rgba(253, 12, 12, 1) 71.5%,
+    rgba(192, 26, 129, 1) 83.1%
+  );
   border: none;
-  color: rgb(66, 66, 66);
-  padding: 10px 20px 10px 20px;
-  background-color: #f3f3f3;
-  border-radius: 5px;
+  padding: 10px 25px 10px 25px;
+  color: white;
+  transition: 500ms;
+  outline: none;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 20px;
 }
 
 .login-content button:hover {
-  border: 1px solid rgb(151, 151, 151);
+  transition: 500ms;
+  padding-right: 50px;
+  padding-left: 50px;
 }
 .close-login {
   font-size: 30px;
@@ -245,6 +278,16 @@ ul a:hover {
     border-radius: 50px;
     padding: 20px;
   }
+  .login-content {
+    background-color: black;
+    width: 560px;
+    color: white;
+    border: 1px solid #888;
+    margin: 2% auto;
+    text-align: center;
+    border-radius: 50px;
+    padding: 20px;
+  }
 }
 @media (max-width: 400px) {
   .main {
@@ -263,6 +306,4 @@ ul a:hover {
     border-radius: 50px;
     padding: 20px;
   }
-}
-@media (max-width: 400px) {
 }

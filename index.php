@@ -7,6 +7,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -60,6 +61,8 @@
       <!-- Modal content -->
       <div class="login-content">
         <div class="close-login">&times;</div>
+        <img src="google-logo-small.gif" class="img-fluid" alt="" />
+        <h3>Sign In</h3>
         <form action="">
           <label for="">Email</label>
           <br />
@@ -69,7 +72,9 @@
           <br />
           <input type="password" name="" id="password" placeholder="Password" />
           <br />
+          <div>
           <button id="login-user-button">Login</button>
+          </div>
         </form>
       </div>
     </div>
@@ -172,7 +177,7 @@
                   >
                 </div>
               </div>
-              <div class="row text-center" id="extraLogos">
+              <div class="row text-center align-items-end" id="extraLogos">
                 <div class="col-4">
                   <a href=""
                     ><img

@@ -130,6 +130,7 @@ loginUserButton.addEventListener("click", e => {
     //clear fields
     document.querySelector("#email").value = "";
     document.querySelector("#password").value = "";
+    signUpButton.style.display = "none";
     //save to web storage
 
     // //bad approach(does not use regex)
@@ -140,4 +141,23 @@ loginUserButton.addEventListener("click", e => {
     // signinBt.innerHTML = displayName;
     // signinBt.style.borderRadius = "50%";
   }
+});
+//sign up functionality
+const signUpButton = document.getElementById("sign-up-button");
+const closeSignUpButton = document.getElementById("closeSignUpDialogBox");
+const SignUpDialog = document.querySelector(".signUpDialog");
+const SignUpUser = document.getElementById("SignUpButton");
+
+//displaying dialog box
+signUpButton.addEventListener("click", () => {
+  SignUpDialog.style.display = "block";
+});
+//closing dialog box
+closeSignUpButton.addEventListener("click", () => {
+  SignUpDialog.style.display = "none";
+});
+//signing up user
+SignUpUser.addEventListener("click", e => {
+  e.preventDefault();
+  //extracting data
 });

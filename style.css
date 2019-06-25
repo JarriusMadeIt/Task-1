@@ -13,13 +13,32 @@ ul a:hover {
 #view-apps-button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 #signin-profile {
   background-color: #4486f7;
   border: none;
   color: white;
+  cursor: pointer;
   padding: 5px 10px 5px 10px;
   border-radius: 2px;
+  font-weight: 700;
+}
+#sign-up-button {
+  display: inline;
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px 5px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+  transition: 500ms;
+}
+#sign-up-button:hover {
+  background-color: #4486f7;
+  border: none;
+  color: white;
+  cursor: pointer;
   font-weight: 700;
 }
 /* main styling */
@@ -56,7 +75,7 @@ ul a:hover {
   border: 1px solid rgb(151, 151, 151);
 }
 
-/* dialog styling */
+/* dialog styling(dialog was done using bootstrap)*/
 
 #viewMoreBt {
   border: none;
@@ -81,8 +100,88 @@ ul a:hover {
 .row img {
   margin: 10px;
 }
+/* Sign up dialog box styling */
+.signUpDialog {
+  /* display: none; */
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+.signUpContent {
+  background-color: black;
+  width: 70%;
+  color: white;
+  border: 1px solid #888;
+  margin: 5% auto;
+  text-align: center;
+  border-radius: 50px;
+  padding: 10px 20px 20px 20px;
+}
+.SignUpDialogHeader {
+  text-align: right;
+}
+.SignUpDialogHeader button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  padding: 0;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  cursor: pointer;
+}
 
-/* login modal styling */
+.signUpContent img {
+  width: 20%;
+}
+.signUpContent form {
+  text-align: left;
+  margin: 0 auto;
+  width: 70%;
+  padding-bottom: 20px;
+}
+.signUpContent form input {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 3px;
+}
+.signUpContent form div {
+  text-align: center;
+  margin-top: 20px;
+}
+#SignUpButton {
+  background-image: linear-gradient(
+    137.9deg,
+    rgba(78, 156, 226, 1) 7.8%,
+    rgba(62, 146, 69, 1) 16%,
+    rgba(251, 220, 23, 1) 32.7%,
+    rgba(242, 160, 35, 1) 50.4%,
+    rgba(253, 12, 12, 1) 71.5%,
+    rgba(192, 26, 129, 1) 83.1%
+  );
+  border: none;
+  padding: 10px 25px 10px 25px;
+  color: white;
+  transition: 500ms;
+  outline: none;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  border-radius: 20px;
+}
+#SignUpButton:hover {
+  transition: 500ms;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+/* login modal styling done using javascript and css*/
 .login-modal {
   display: none;
   position: fixed;
@@ -91,7 +190,6 @@ ul a:hover {
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
 .login-content {
@@ -137,6 +235,16 @@ ul a:hover {
     margin-bottom: 30px;
     border: 1px solid rgb(182, 182, 182);
   }
+  .signUpContent {
+    background-color: black;
+    width: 560px;
+    color: white;
+    border: 1px solid #888;
+    margin: 2% auto;
+    text-align: center;
+    border-radius: 50px;
+    padding: 20px;
+  }
 }
 @media (max-width: 400px) {
   .main {
@@ -145,4 +253,16 @@ ul a:hover {
   .main img {
     width: 230px;
   }
+  .signUpContent {
+    background-color: black;
+    width: 300px;
+    color: white;
+    border: 1px solid #888;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 50px;
+    padding: 20px;
+  }
+}
+@media (max-width: 400px) {
 }

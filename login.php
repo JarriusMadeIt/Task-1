@@ -27,10 +27,9 @@
             $myJSON = json_encode($row);
             //add to session
             $_SESSION["email"] = $row["email"];
+            $_SESSION["signedIn"]="true";
             //response
             echo $myJSON;
-
-            
         }else{
             echo "404";
         }

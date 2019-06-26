@@ -85,13 +85,15 @@ loginUserButton.addEventListener("click", e => {
     alert("Email field is empty!");
   } else if (password === "") {
     alert("Password field is empty!");
+  } else if (isRegexEmailCertified(email) == false) {
+    alert("email not valid");
   }
 
-  if (password != "" && email != "") {
+  if (password != "" && email != "" && isRegexEmailCertified(email)) {
     //create JSON object
 
     const userLogin = {
-      email: email,
+      email: email.toLowerCase(),
       password: password
     };
 
@@ -141,14 +143,6 @@ loginUserButton.addEventListener("click", e => {
     document.querySelector("#password").value = "";
     signUpButton.style.display = "none";
     //save to web storage
-
-    // //bad approach(does not use regex)
-    // let emailArray = email.split("@");
-    // const displayName =
-    //   emailArray[0].charAt(0).toUpperCase() +
-    //   emailArray[1].charAt(0).toUpperCase();
-    // signinBt.innerHTML = displayName;
-    // signinBt.style.borderRadius = "50%";
   }
 });
 //sign up functionality
@@ -177,8 +171,10 @@ SignUpUser.addEventListener("click", e => {
   let SignUpAge = document.getElementById("SignUpAge").value;
   let SignUpAddress = document.getElementById("SignUpAddress").value;
 
-  if (SignUpEmail == "") {
+  if (SignUpEmail === "") {
     document.getElementById("SignUpEmail").style.border = "3px solid red";
+  } else if (isRegexEmailCertified(SignUpEmail) == false) {
+    alert("email not valid");
   }
   if (SignUpPassword == "") {
     document.getElementById("SignUpPassword").style.border = "3px solid red";
@@ -195,18 +191,20 @@ SignUpUser.addEventListener("click", e => {
   if (SignUpAddress == "") {
     document.getElementById("SignUpAddress").style.border = "3px solid red";
   }
+
   if (
     SignUpEmail != "" &&
     SignUpPassword != "" &&
     SignUpFirstName != "" &&
     SignUpLastName != "" &&
     SignUpAge != "" &&
-    SignUpAddress != ""
+    SignUpAddress != "" &&
+    isRegexEmailCertified(SignUpEmail)
   ) {
     //all fields have been filled and ready to be sent to server using ajax(post)
 
     //creating datastring
-    let data = `SignUpEmail=${SignUpEmail}&SignUpPassword=${SignUpPassword}&SignUpFirstName=${SignUpFirstName}&SignUpLastName=${SignUpLastName}&SignUpAge=${SignUpAge}&SignUpAddress=${SignUpAddress}`;
+    let data = `SignUpEmail=${SignUpEmail.toLowerCase()}&SignUpPassword=${SignUpPassword}&SignUpFirstName=${SignUpFirstName}&SignUpLastName=${SignUpLastName}&SignUpAge=${SignUpAge}&SignUpAddress=${SignUpAddress}`;
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "SignUp.php", true);
@@ -226,3 +224,12 @@ SignUpUser.addEventListener("click", e => {
     xhr.send(data);
   }
 });
+
+function isRegexEmailCertified(str) {
+  let strReg = /@*.com/;
+  if (strReg.test(str)) {
+    return true;
+  } else {
+    return false;
+  }
+}

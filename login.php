@@ -1,5 +1,18 @@
 <?php
-    if($_SERVER['REQUEST_METHOD']=="POST"){
+    if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["recaptcha_response"])){
+
+        //creating post request 
+        $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+        $recaptcha_secret = '6LfIwqoUAAAAAKeX7cfsvcTbQfE7LuuHFWnSbV9t';
+        $recaptcha_response = $_POST['recaptcha_response'];
+
+        //creating string and create request
+        $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+        //decoding from json
+        $recaptcha = json_decode($recaptcha);
+        if ($recaptcha->score >= 0.5) {
+            // Verified
+
         //storing post values into variables
         $uEmail = "";
         $uPassword = "";
@@ -33,5 +46,10 @@
         }else{
             echo "404";
         }
+        } else {
+            // Not verified
+            echo "bot";
+        }
+
     }
 ?>

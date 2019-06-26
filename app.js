@@ -66,6 +66,18 @@ const closeModal = document.querySelector(".close-login");
 //event to show dialog box
 signinBt.addEventListener("click", () => {
   loginModal.style.display = "block";
+  //create captcha token
+  grecaptcha.ready(() => {
+    grecaptcha
+      .execute("6LfIwqoUAAAAANpinyh8Y4abQkA1HOG0aT3DCh0Q", { action: "signin" })
+      .then(token => {
+        var recaptchaResponse = document.getElementById(
+          "recaptcha_signin_response"
+        );
+        recaptchaResponse.value = token;
+        console.log(token);
+      });
+  });
 });
 //event to close dialog box
 closeModal.addEventListener("click", () => {
@@ -80,6 +92,8 @@ loginUserButton.addEventListener("click", e => {
 
   let email = document.querySelector("#email").value;
   let password = document.querySelector("#password").value;
+  let recaptchaResponse = document.getElementById("recaptcha_signin_response")
+    .value;
 
   if (email === "") {
     alert("Email field is empty!");
@@ -94,11 +108,17 @@ loginUserButton.addEventListener("click", e => {
 
     const userLogin = {
       email: email.toLowerCase(),
-      password: password
+      password: password,
+      recaptcha_response: recaptchaResponse
     };
 
     const dataStr =
-      "email=" + userLogin.email + "&password=" + userLogin.password;
+      "email=" +
+      userLogin.email +
+      "&password=" +
+      userLogin.password +
+      "&recaptcha_response=" +
+      userLogin.recaptcha_response;
 
     //create ajax request
     const xhr = new XMLHttpRequest();
@@ -108,12 +128,12 @@ loginUserButton.addEventListener("click", e => {
     xhr.onload = function() {
       if (this.status == 200) {
         //if user has account Dialog will hide and json object will be displayed instead of sing in buton
+        console.log(this.responseText);
         if (this.responseText == "404") {
           alert("No account exists with email " + userLogin.email);
         } else {
           //record found
           const foundAccount = JSON.parse(this.response);
-          console.log(foundAccount);
           //checking credentials
           if (userLogin.password != foundAccount.password) {
             alert("incorrect password!");
@@ -129,7 +149,6 @@ loginUserButton.addEventListener("click", e => {
           </p>`;
             signinBt.classList.toggle("signedIn");
             signinBt.innerHTML = uiAccount;
-            console.log(userLogin.password);
           }
         }
       }
@@ -154,6 +173,19 @@ const SignUpUser = document.getElementById("SignUpButton");
 //displaying dialog box
 signUpButton.addEventListener("click", () => {
   SignUpDialog.style.display = "block";
+
+  ////////////////////////////////////////////
+  grecaptcha.ready(() => {
+    grecaptcha
+      .execute("6LfIwqoUAAAAANpinyh8Y4abQkA1HOG0aT3DCh0Q", { action: "signup" })
+      .then(token => {
+        var recaptchaResponse = document.getElementById(
+          "recaptcha_signup_response"
+        );
+        recaptchaResponse.value = token;
+        console.log(token);
+      });
+  });
 });
 //closing dialog box
 closeSignUpButton.addEventListener("click", () => {
@@ -170,7 +202,8 @@ SignUpUser.addEventListener("click", e => {
   let SignUpLastName = document.getElementById("SignUpLastName").value;
   let SignUpAge = document.getElementById("SignUpAge").value;
   let SignUpAddress = document.getElementById("SignUpAddress").value;
-
+  var recaptchaResponse = document.getElementById("recaptcha_signup_response")
+    .value;
   if (SignUpEmail === "") {
     document.getElementById("SignUpEmail").style.border = "3px solid red";
   } else if (isRegexEmailCertified(SignUpEmail) == false) {
@@ -204,7 +237,12 @@ SignUpUser.addEventListener("click", e => {
     //all fields have been filled and ready to be sent to server using ajax(post)
 
     //creating datastring
-    let data = `SignUpEmail=${SignUpEmail.toLowerCase()}&SignUpPassword=${SignUpPassword}&SignUpFirstName=${SignUpFirstName}&SignUpLastName=${SignUpLastName}&SignUpAge=${SignUpAge}&SignUpAddress=${SignUpAddress}`;
+    let data = `SignUpEmail=${SignUpEmail.toLowerCase()}&SignUpPassword=${SignUpPassword}&SignUpFirstName=${SignUpFirstName}&SignUpLastName=${SignUpLastName}&SignUpAge=${SignUpAge}&SignUpAddress=${SignUpAddress}&recaptcha_response=${recaptchaResponse}`;
+
+    console.log("******************************************");
+    console.log("request data");
+    console.log(data);
+    console.log("******************************************");
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "SignUp.php", true);
@@ -214,6 +252,8 @@ SignUpUser.addEventListener("click", e => {
         if (this.responseText == "success") {
           SignUpDialog.style.display = "none";
           alert("User added to database");
+        } else if (this.responseText == "bot") {
+          console.log("bot");
         } else {
           alert(
             "An account already exists with this Email, try with another email"

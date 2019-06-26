@@ -17,6 +17,7 @@
 
     <title>Task 1</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfIwqoUAAAAANpinyh8Y4abQkA1HOG0aT3DCh0Q"></script>
   </head>
 
   <body>
@@ -72,8 +73,13 @@
           <br />
           <input type="password" name="" id="password" placeholder="Password" />
           <br />
+          <input
+            type="hidden"
+            name="recaptcha_signin_response"
+            id="recaptcha_signin_response"
+          />
           <div>
-          <button id="login-user-button">Login</button>
+            <button id="login-user-button">Login</button>
           </div>
         </form>
       </div>
@@ -101,6 +107,11 @@
           <input type="number" name="SignUpAge" id="SignUpAge" />
           <label for="">Address</label><br />
           <input type="text" name="SignUpAddress" id="SignUpAddress" />
+          <input
+            type="hidden"
+            name="recaptcha_signup_response"
+            id="recaptcha_signup_response"
+          />
           <div><Button id="SignUpButton">Sign me Up!</Button></div>
         </form>
       </div>

@@ -1,3 +1,5 @@
+//line added from Visual Studio 2017
+
 //document elements
 const viewAppsBt = document.querySelector("#view-apps-button");
 const signinBt = document.querySelector("#signin-profile");

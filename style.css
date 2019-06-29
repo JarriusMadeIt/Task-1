@@ -1,11 +1,14 @@
 /* navbar styling */
+body {
+  background-color: #383a3c;
+}
 ul li {
   display: inline;
   margin: 0px 10px 0px 10px;
 }
 ul a {
   text-decoration: none;
-  color: rgb(66, 66, 66);
+  color: WHITE;
 }
 ul a:hover {
   color: rgb(66, 66, 66);
@@ -37,6 +40,7 @@ ul a:hover {
   cursor: pointer;
   outline: none;
   transition: 500ms;
+  color: white;
 }
 #sign-up-button:hover {
   background-color: #4486f7;
